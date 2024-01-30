@@ -3,3 +3,4 @@ test.sh
 .luarc.json
 nvim
 chatgptkey.txt.gpg
+signal-desktop-keyring.gpg
