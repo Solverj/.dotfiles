@@ -61,6 +61,7 @@ return {
     vim.keymap.set('n', '<leader>B', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
+    vim.keymap.set('n', '<leader>gt', dap.run_last, { desc = 'Debug: Run last' })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
@@ -108,8 +109,8 @@ return {
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    --     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    --   dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+    dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
     require('dap-go').setup()
