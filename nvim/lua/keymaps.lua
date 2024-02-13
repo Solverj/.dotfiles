@@ -14,6 +14,10 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 vim.keymap.set('n', 'Ø', "<cmd> bprev <CR>", { desc = 'Go to previous buffer' })
 vim.keymap.set('n', 'Æ', "<cmd> bnext <CR>", { desc = 'Go to previous buffer' })
+vim.keymap.set('n', 'oo', "<cmd>put<CR>", { desc = 'make newline but stay in normal mode' })
+vim.keymap.set('n', 'OO', "<cmd>-put<CR>", { desc = 'make newline above but stay in normal mode' })
+vim.keymap.set('n', 'o', "o", { desc = 'make newline undernearth and goto insert mode' })
+vim.keymap.set('n', 'O', "O", { desc = 'make newline above and goto insert mode' })
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })

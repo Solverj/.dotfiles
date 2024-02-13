@@ -6,8 +6,8 @@
 
   
   # Compositor (Animations, Shadows, Transparency)
-  exec --no-startup-id picom -cbf --corner-radius=8 --blur-method='kernel' --blur-kern "15,15,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,"
-  exec --no-startup-id /usr/lib/pam_kwallet_init
+# exec --no-startup-id picom -cbf --corner-radius=8 
+ exec --no-startup-id /usr/lib/pam_kwallet_init
   
 # >>> Window rules <<<
   # >>> Avoid tiling Plasma popups, dropdown windows, etc. <<<
@@ -46,7 +46,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-gaps inner 15px
+#gaps inner 15px
 default_border pixel 5
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -86,7 +86,7 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+#tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec alacritty
@@ -99,17 +99,17 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # custom keybinds for zen-mode
 bindsym $mod+z exec i3lock -c 000000 
 bindsym $mod+g exec google-chrome --profile-directory="Profile 1" --new-window https://chat.openai.com/
-bindsym $mod+Shift+g exec google-chrome --profile-directory="Profile 5" --new-window https://github.com/orgs/Mattilsynet/projects/1
+bindsym $mod+Shift+g exec google-chrome --profile-directory="Default" --new-window https://github.com/orgs/Mattilsynet/projects/1
 bindsym $mod+b exec google-chrome --profile-directory="Profile 4" --new-window https://fiken.no/ https://mail.google.com/mail/u/0/#inbox https://fiken.no/foretak/vikoder-as/timeforing/
 # applications
 bindsym $mod+Shift+s exec slack
-bindsym $mod+t exec google-chrome --profile-directory="Profile 5" --new-window https://teams.microsoft.com/
-bindsym $mod+o exec google-chrome --profile-directory="Profile 5" --new-window https://outlook.office.com/mail
+bindsym $mod+t exec google-chrome --profile-directory="Default" --new-window https://teams.microsoft.com/
+bindsym $mod+o exec google-chrome --profile-director="Default" --new-window https://outlook.office.com/mail
 bindsym $mod+i exec intellij-idea-ultimate
 bindsym $mod+m exec spotify
 # background setting
 
-exec --no-startup-id feh --bg-scale /home/srjsilver/.config/i3/bg/wallpaperflare.com_wallpaper.jpg
+exec --no-startup-id feh --bg-scale /home/solve/.config/i3/bg/wallpaperflare.com_wallpaper.jpg
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -244,7 +244,7 @@ bar {
         strip_workspace_numbers yes
         status_command i3status
         mode hide
-        height 30
+#        height 30
         colors {
          background #242424
         }

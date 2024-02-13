@@ -10,7 +10,7 @@ export PATH=$PATH:~/i3/i3-restore/
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
-
+export PATH=$PATH:~/opt/alacritty/target/release
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump colored-man-pages fzf gcloud gradle-completion)
+plugins=(git autojump colored-man-pages fzf gcloud)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,12 +110,10 @@ export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 alias k="kubectl"
 
 #nvim path
-export PATH=$PATH:/home/srjsilver/opt/nvim-linux64/bin
-
 autoload -U +X bashcompinit && bashcompinit
 export GOPRIVATE=github.com/Mattilsynet*
 export GOROOT=/home/linuxbrew/.linuxbrew/Cellar/go/1.21.6/libexec
-export GOPATH=/home/srjsilver/go
+export GOPATH=/home/solve/go
 complete -o nospace -C /usr/bin/terraform terraform
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 #compdef tkn
@@ -332,4 +330,4 @@ alias gaal='gcloud auth application-default login'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-alias vim=nvim
+alias vim="$HOME/opt/nvim-linux64/bin/nvim"

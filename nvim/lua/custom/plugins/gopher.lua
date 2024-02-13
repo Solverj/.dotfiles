@@ -12,4 +12,9 @@ return {
   build = function()
     vim.cmd([[silent! GoInstallDeps]])
   end,
+  keys = {
+    {
+      "<leader>ce", "<cmd>GoIfErr<CR>", "GoIfErr",
+    },
+  }
 }
