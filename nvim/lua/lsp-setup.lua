@@ -3,7 +3,6 @@
 local on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint.enable(bufnr, true)
-    -- vim.api.nvim_set_hl(0, 'LspInlayHint', { bg = '#191970' })
   end
   --  vim.lsp.inlay_hint.enable(bufnr, true)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
@@ -29,7 +28,6 @@ local on_attach = function(client, bufnr)
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
@@ -91,6 +89,16 @@ local servers = {
   tflint = {},
   gopls = {
     gopls = {
+      codelenses = {
+        gc_details = false,
+        generate = true,
+        regenerate_cgo = true,
+        run_govulncheck = true,
+        test = true,
+        tidy = true,
+        upgrade_dependency = true,
+        vendor = true,
+      },
       hints = {
         assignVariableTypes = true,
         compositeLiteralFields = true,
@@ -105,7 +113,10 @@ local servers = {
         shadow = true,
       },
       staticcheck = true,
+      usePlaceholders = true,
+      completeUnimported = true,
       gofumpt = true,
+      semanticTokens = true,
     },
   },
   lua_ls = {

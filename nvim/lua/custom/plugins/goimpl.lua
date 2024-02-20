@@ -14,12 +14,12 @@ return {
   build = function()
     vim.cmd [[silent! GoInstallDeps]]
   end,
-  keys = function()
-    vim.api.nvim_set_keymap(
-      "n",
+  keys = {
+    {
       "<leader>im",
-      [[<cmd>lua require'telescope'.extensions.goimpl.goimpl{}<CR>]],
-      { noremap = true, silent = true }
-    )
-  end,
+      mode = "n",
+      function() require("telescope").extensions.goimpl.goimpl() end,
+      desc = "Go impl",
+    },
+  },
 }

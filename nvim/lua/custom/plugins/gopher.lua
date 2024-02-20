@@ -14,7 +14,10 @@ return {
   end,
   keys = {
     {
-      "<leader>ce", "<cmd>GoIfErr<CR>", "GoIfErr",
+      "<leader>ce",
+      mode = "n",
+      "<cmd>GoIfErr<cr>",
+      desc = "Go impl",
     },
-  }
+  },
 }
