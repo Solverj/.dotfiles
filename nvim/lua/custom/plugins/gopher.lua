@@ -17,7 +17,7 @@ return {
       "<leader>ce",
       mode = "n",
       "<cmd>GoIfErr<cr>",
-      desc = "Go impl",
+      desc = "Generate if err check",
     },
   },
 }
