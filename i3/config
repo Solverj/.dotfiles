@@ -6,7 +6,7 @@
 
   
   # Compositor (Animations, Shadows, Transparency)
-# exec --no-startup-id picom -cbf --corner-radius=8 
+  exec --no-startup-id picom -cbf --corner-radius=8 
  exec --no-startup-id /usr/lib/pam_kwallet_init
   
 # >>> Window rules <<<
@@ -89,7 +89,7 @@ floating_modifier $mod
 #tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill

@@ -112,7 +112,7 @@ alias k="kubectl"
 #nvim path
 autoload -U +X bashcompinit && bashcompinit
 export GOPRIVATE=github.com/Mattilsynet*
-export GOROOT=/home/linuxbrew/.linuxbrew/Cellar/go/1.21.6/libexec
+export GOROOT=/home/linuxbrew/.linuxbrew/Cellar/go/1.22.0/libexec
 export GOPATH=/home/solve/go
 complete -o nospace -C /usr/bin/terraform terraform
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
