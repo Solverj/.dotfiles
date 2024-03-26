@@ -113,7 +113,6 @@ local servers = {
         shadow = true,
       },
       staticcheck = true,
-      usePlaceholders = true,
       completeUnimported = true,
       gofumpt = true,
       semanticTokens = true,

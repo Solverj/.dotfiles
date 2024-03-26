@@ -2,9 +2,7 @@
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
-
 Kickstart.nvim is *not* a distribution.
-
 Kickstart.nvim is a template for your own configuration.
   The goal is that you can read every line of code, top-to-bottom, understand
   what your configuration is doing, and modify it to suit your needs.
@@ -36,13 +34,12 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now :)
 --]]
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
+vim.o.termguicolors = true
 -- [[ Install `lazy.nvim` plugin manager ]]
 require 'lazy-bootstrap'
 
