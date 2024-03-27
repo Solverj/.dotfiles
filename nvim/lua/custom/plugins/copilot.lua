@@ -4,18 +4,10 @@ return {
   config = function()
     require("copilot").setup({
       panel = {
-        enabled = true,
-        keymap = {
-          open = "<M-ø>",
-        },
+        enabled = false,
       },
       suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        debounce = 75,
-        keymap = {
-          accept = "<C-L>",
-        },
+        enabled = false,
       },
       filetypes = {
         yaml = false,

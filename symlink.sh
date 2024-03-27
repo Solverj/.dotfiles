@@ -26,8 +26,6 @@ ln_sb() {
 
 ln_sb nvim ~/.config
 ln_sb oh-my-zsh/.zshrc ~
-# Installing at ~/.oh-my-zsh will make it difficult to manage oh-my-zsh installation.
 ln_sb i3 ~/.config
 ln_sb alacritty ~/.config
-ln_sb tmux/tmux.conf ~/.tmux.conf
-ln_sb tmux/plugins ~/.tmux/
+ln_sb tmux/.tmux.conf ~/
