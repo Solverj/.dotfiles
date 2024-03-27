@@ -27,7 +27,7 @@ alias vim="nvim"
 alias v="vim"
 alias gal='gcloud auth login'
 alias gaal='gcloud auth application-default login'
-alias l="ls -lha"
+alias l="ls -lha --color=auto"
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 setopt appendhistory # Immediately append history instead of overwriting
