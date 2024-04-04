@@ -29,3 +29,4 @@ ln_sb oh-my-zsh/.zshrc ~
 ln_sb i3 ~/.config
 ln_sb alacritty ~/.config
 ln_sb tmux/.tmux.conf ~/
+ln_sb nitrogen ~/.config
