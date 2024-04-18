@@ -63,6 +63,7 @@ return {
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
     vim.keymap.set('n', '<leader>gt', dap.run_last, { desc = 'Debug: Run last' })
+    vim.keymap.set('n', '<leader>dT', "<cmd>lua require('dap-go').debug_test()<CR>", { desc = 'Debug go nearest' })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
