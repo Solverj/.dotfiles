@@ -1,4 +1,5 @@
 export PATH=$PATH:~/go/bin/
+export PATH=$PATH:~/git/plattform/wasm-learning/wasmCloud/target/release
 autoload -Uz compinit promptinit
 compinit
 promptinit
@@ -35,6 +36,6 @@ setopt histignorealldups # If a new command is a duplicate, remove the older one
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
-[ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
+#[ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
