@@ -28,6 +28,7 @@ zinit snippet OMZP::kubectl
 zinit snippet OMZP::gcloud
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::colored-man-pages
+zinit snippet OMZP::autojump
 # Load completions
 autoload -U compinit && compinit
 
@@ -56,7 +57,7 @@ alias vim="nvim"
 alias v="vim"
 alias gal='gcloud auth login'
 alias gaal='gcloud auth application-default login'
-alias ls="ls"
+alias ls="ls --color"
 alias l="ls -lha --color"
 alias gmtv="go mod tidy && go mod vendor"
 source /usr/share/fzf/key-bindings.zsh
