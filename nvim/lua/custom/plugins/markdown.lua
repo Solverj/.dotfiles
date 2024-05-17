@@ -8,11 +8,14 @@ return {
     end
   },
   {
-    -- INFO: Previous tables in real time.
-    "iamcco/markdown-preview.nvim",
-  },
-  {
     -- INFO: Making tables in MD easier with :EasyTablesCreateNew
     "Myzel394/easytables.nvim",
-  }
+  },
+  "iamcco/markdown-preview.nvim",
+  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  build = "cd app && yarn install",
+  init = function()
+    vim.g.mkdp_filetypes = { "markdown" }
+  end,
+  ft = { "markdown" },
 }

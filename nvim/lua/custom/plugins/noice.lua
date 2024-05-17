@@ -1,9 +1,16 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  opts = {
-    -- add any options here
-  },
+  opts = {},
+  config = function()
+    require("noice").setup({
+      lsp = {
+        signature = {
+          enabled = false,
+        }
+      },
+    })
+  end,
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     "MunifTanjim/nui.nvim",
