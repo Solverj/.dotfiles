@@ -1,4 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -17,18 +16,16 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
+# zsh-fzf-history-search
+#zinit ice lucid wait'0'
+#zinit light joshskidmore/zsh-fzf-history-search
+# Plugin history-search-multi-word loaded with investigating.
+zinit load zdharma-continuum/history-search-multi-word
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
-# Add in snippets
-zinit snippet OMZP::git
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::gcloud
-zinit snippet OMZP::command-not-found
-zinit snippet OMZP::colored-man-pages
-zinit snippet OMZP::autojump
 # Load completions
 autoload -U compinit && compinit
 
@@ -45,14 +42,14 @@ export FZF_BASE=/usr/bin
 export MANPAGER='nvim +Man!'
 
 export GOPRIVATE='github.com/Mattilsynet*'
-export GOROOT='/home/linuxbrew/.linuxbrew/Cellar/go/1.22.2/libexec'
-export GOPATH='/home/srjsilver/go'
+export GOROOT='/usr/lib/go'
+export GOPATH='/home/solve/go'
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 export EDITOR='nvim'
 export GONOPROXY='github.com/Mattilsynet*'
 export GONOSUMDB='github.com/Mattilsynet*'
 export PATH=$PATH:~/opt/nvim-linux64/bin
-
+export PATH=$PATH:/opt/google-cloud-cli/bin
 alias vim="nvim"
 alias v="vim"
 alias gal='gcloud auth login'
@@ -60,8 +57,6 @@ alias gaal='gcloud auth application-default login'
 alias ls="ls --color"
 alias l="ls -lha --color"
 alias gmtv="go mod tidy && go mod vendor"
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 HISTFILE=~/.zhistory
 HISTSIZE=5000
 SAVEHIST=5000
@@ -75,12 +70,13 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Completion styling
+zstyle ':autocomplete:*' default-context history-incremental-search-backward
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # Make thefuck command available
 eval $(thefuck --alias)
-
+eval "$(zoxide init --cmd cd zsh)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

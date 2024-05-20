@@ -66,7 +66,6 @@ bindsym $mod+b exec google-chrome-stable --profile-directory="Vikoder" --new-win
 bindsym $mod+Shift+s exec slack
 bindsym $mod+t exec teams
 bindsym $mod+o exec google-chrome-stable --profile-director="MtWork" --new-window https://outlook.office.com/mail
-bindsym $mod+m exec spotify
 # background setting
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 # A more modern dmenu replacement is rofi:

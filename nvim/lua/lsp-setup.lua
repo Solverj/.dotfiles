@@ -2,7 +2,8 @@
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable(bufnr, true)
+    vim.g.inlay_hints_visible = true
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end
   require "lsp_signature".on_attach({ bind = true, handler_opts = { border = "rounded" } }, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
