@@ -14,21 +14,20 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-# Add in zsh plugins
-# zsh-fzf-history-search
-#zinit ice lucid wait'0'
-#zinit light joshskidmore/zsh-fzf-history-search
-# Plugin history-search-multi-word loaded with investigating.
+#
+# # Add in zsh plugins
+# # zsh-fzf-history-search
+zinit ice lucid wait'0'
+zinit light joshskidmore/zsh-fzf-history-search
+# # Plugin history-search-multi-word loaded with investigating.
 zinit load zdharma-continuum/history-search-multi-word
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-
+#
 # Load completions
 autoload -U compinit && compinit
-
 zinit cdreplay -q
 
 bindkey '\e[H'  beginning-of-line
@@ -54,8 +53,9 @@ alias vim="nvim"
 alias v="vim"
 alias gal='gcloud auth login'
 alias gaal='gcloud auth application-default login'
-alias ls="ls --color"
-alias l="ls -lha --color"
+alias ls="eza --icons=auto --long --octal-permissions --all --total-size"
+alias l="eza --icons=auto --long --octal-permissions --all --total-size"
+alias tree="eza --icons=auto --tree"
 alias gmtv="go mod tidy && go mod vendor"
 HISTFILE=~/.zhistory
 HISTSIZE=5000
