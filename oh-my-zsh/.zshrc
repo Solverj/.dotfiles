@@ -8,6 +8,10 @@ fi
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+# TODO: 
+# Add bat -theme: https://github.com/catppuccin/bat
+# Add eza installment
+# Add bat installment
 
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
@@ -49,6 +53,8 @@ export GONOPROXY='github.com/Mattilsynet*'
 export GONOSUMDB='github.com/Mattilsynet*'
 export PATH=$PATH:~/opt/nvim-linux64/bin
 export PATH=$PATH:/opt/google-cloud-cli/bin
+export FPATH=$FPATH:/home/solve/.dotfiles/oh-my-zsh/_gh
+alias cat="bat --theme \"Catppuccin Macchiato\""
 alias vim="nvim"
 alias v="vim"
 alias gal='gcloud auth login'
