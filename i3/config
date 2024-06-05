@@ -58,7 +58,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
 # custom keybinds for zen-mode
-bindsym $mod+z exec i3lock -c 000000 
+bindsym $mod+z exec "~/.config/i3/lock.sh"
 bindsym $mod+g exec google-chrome-stable --profile-directory="Soelve" --new-window https://chat.openai.com/
 bindsym $mod+Shift+g exec google-chrome-stable --profile-directory="MtWork" --new-window https://github.com/orgs/Mattilsynet/projects/1
 bindsym $mod+b exec google-chrome-stable --profile-directory="Vikoder" --new-window https://fiken.no/ https://mail.google.com/mail/u/0/#inbox https://fiken.no/foretak/vikoder-as/timeforing/
