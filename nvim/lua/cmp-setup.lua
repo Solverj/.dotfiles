@@ -86,6 +86,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    -- { name = 'nvim_lsp_signature_help' },
     { name = 'path' },
     { name = 'copilot', group_index = 2 },
   },

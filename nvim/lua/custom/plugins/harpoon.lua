@@ -21,6 +21,20 @@ return {
       end,
       desc = "Mark this file (harpoon)",
     },
+    {
+      "Æ",
+      function()
+        require("harpoon.ui").nav_next()
+      end,
+      desc = "Next Harpoon file",
+    },
+    {
+      'Ø',
+      function()
+        require("harpoon.ui").nav_prev()
+      end,
+      desc = "previous Harpoon file",
+    },
   },
   config = function()
     require("telescope").load_extension("harpoon")
