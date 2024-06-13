@@ -3,9 +3,9 @@
 local on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
     vim.g.inlay_hints_visible = true
-    vim.lsp.inlay_hint.enable(bufnr, true)
+    vim.lsp.inlay_hint.enable(true, nil)
   end
-  require('lsp_signature').on_attach(nil, bufnr)
+  --  require('lsp_signature').on_attach(nil, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -19,7 +19,7 @@ local on_attach = function(client, bufnr)
 
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
-  nmap('<leader>rn>', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')

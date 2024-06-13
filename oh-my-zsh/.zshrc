@@ -34,16 +34,18 @@ zinit light Aloxaf/fzf-tab
 autoload -U compinit && compinit
 zinit cdreplay -q
 
+#Keybinds
 bindkey '\e[H'  beginning-of-line
 bindkey '\e[F'  end-of-line
 bindkey '\e[3~' delete-char
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
+#exports
 export PATH=$PATH:~/go/bin/
 export FZF_BASE=/usr/bin
+#make nvim default man pager
 export MANPAGER='nvim +Man!'
-
 export GOPRIVATE='github.com/Mattilsynet*'
 export GOROOT='/usr/lib/go'
 export GOPATH='/home/solve/go'
@@ -54,15 +56,20 @@ export GONOSUMDB='github.com/Mattilsynet*'
 export PATH=$PATH:~/opt/nvim-linux64/bin
 export PATH=$PATH:/opt/google-cloud-cli/bin
 export FPATH=$FPATH:/home/solve/.dotfiles/oh-my-zsh/_gh
+
+#Aliases
 alias cat="bat --theme \"Catppuccin Macchiato\""
 alias vim="nvim"
 alias v="vim"
 alias gal='gcloud auth login'
 alias gaal='gcloud auth application-default login'
-alias ls="eza --icons=auto --long --octal-permissions --all --total-size"
-alias l="eza --icons=auto --long --octal-permissions --all --total-size"
+alias ls="eza --icons=auto --long --octal-permissions --all"
+alias l="eza --icons=auto --long --octal-permissions --all"
 alias tree="eza --icons=auto --tree"
 alias gmtv="go mod tidy && go mod vendor"
+alias resolve="LD_PRELOAD=\"/usr/lib/libgio-2.0.so /usr/lib/libgmodule-2.0.so\" /opt/resolve/bin/resolve"
+
+#Set history configuration
 HISTFILE=~/.zhistory
 HISTSIZE=5000
 SAVEHIST=5000
@@ -81,8 +88,29 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+
 # Make thefuck command available
 eval $(thefuck --alias)
+# make zoxide cd alias
 eval "$(zoxide init --cmd cd zsh)"
+# enable direnv
+echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"

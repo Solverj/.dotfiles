@@ -69,3 +69,11 @@ require 'lsp-setup'
 require 'cmp-setup'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+-- Recognize .envrc files as shell scripts
+vim.cmd([[
+  augroup envrc
+    autocmd!
+    autocmd BufRead,BufNewFile .envrc set filetype=sh
+  augroup END
+]])
