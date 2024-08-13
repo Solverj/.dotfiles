@@ -1,10 +1,6 @@
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(client, bufnr)
-  if client.server_capabilities.inlayHintProvider then
-    vim.g.inlay_hints_visible = true
-    vim.lsp.inlay_hint.enable(true, nil)
-  end
+local on_attach = function(_, bufnr)
   --  require('lsp_signature').on_attach(nil, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
@@ -38,7 +34,6 @@ local on_attach = function(client, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
-
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
@@ -76,14 +71,7 @@ require('mason-lspconfig').setup()
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
-
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   terraformls = {
   },
   tflint = {},
@@ -127,7 +115,6 @@ local servers = {
       diagnostics = { disable = { 'missing-fields' } },
     },
   },
-  bufls = {},
 }
 
 -- Setup neovim lua configuration
@@ -153,5 +140,4 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
-
 -- vim: ts=2 sts=2 sw=2 et

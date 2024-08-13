@@ -2,7 +2,7 @@ import = ["~/.dotfiles/alacritty/catppuccin-mocha.toml"]
 [window]
 padding = { x = 5, y = 5}
 opacity = 0.97
-blur = true
+blur = false
 [font]
 normal = { family = "JetBrains Mono Nerd Font", style = "Medium"}
 bold = { family = "JetBrains Mono Nerd Font", style = "Bold"}

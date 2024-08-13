@@ -69,7 +69,8 @@ require 'lsp-setup'
 require 'cmp-setup'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
---
+
+-- TODO: Add custom configuration to their own files and require them instead
 -- Recognize .envrc files as shell scripts
 vim.cmd([[
   augroup envrc
@@ -77,3 +78,37 @@ vim.cmd([[
     autocmd BufRead,BufNewFile .envrc set filetype=sh
   augroup END
 ]])
+-- Function to toggle inlay hints
+function ToggleInlayHints()
+  local lsp = vim.lsp
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = lsp.buf_get_clients(bufnr)
+
+  if next(clients) == nil then return end
+
+  for _, client in pairs(clients) do
+    if client.server_capabilities.inlayHintProvider then
+      local enabled = not client.server_capabilities.inlayHintsEnabled
+      client.server_capabilities.inlayHintsEnabled = enabled
+      if enabled then
+        lsp.inlay_hint.enable(true)
+      else
+        lsp.inlay_hint.enable(false)
+      end
+    end
+  end
+end
+
+function _G.reload_nvim_config()
+  for name, _ in pairs(package.loaded) do
+    if name:match('^user') or name:match('^plugins') then
+      package.loaded[name] = nil
+    end
+  end
+  dofile(vim.env.MYVIMRC)
+  print("Configuration reloaded!")
+end
+
+vim.api.nvim_set_keymap('n', '<leader>rr', ':lua reload_nvim_config()<CR>', { noremap = true, silent = true })
+-- Command to toggle inlay hints
+vim.api.nvim_create_user_command('ToggleInlayHints', ToggleInlayHints, {})
