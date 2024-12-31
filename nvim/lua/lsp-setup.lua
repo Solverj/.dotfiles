@@ -1,6 +1,11 @@
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
+  if client.server_capabilities.inlayHintProvider then
+    vim.g.inlay_hints_visible = true
+    vim.lsp.inlay_hint.enable(true, nil)
+  end
+
   --  require('lsp_signature').on_attach(nil, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
@@ -12,8 +17,19 @@ local on_attach = function(_, bufnr)
     if desc then
       desc = 'LSP: ' .. desc
     end
-
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
+  if client.name == "gopls" then
+    nmap('<leader>gm', function()
+      require('telescope.builtin').find_files({ cwd = "~/go/pkg/mod" })
+    end, '[G]o [M]odules: Browse Packages'
+    )
+    vim.cmd [[
+  augroup GoMod
+    autocmd!
+    autocmd FileType go.mod nnoremap <buffer> gf :lua vim.lsp.buf.definition()<CR>
+  augroup END
+]]
   end
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
@@ -27,6 +43,7 @@ local on_attach = function(_, bufnr)
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
@@ -34,12 +51,25 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
+  if client.name == "gopls" or client.name == "lua_ls" then
+    local cwd = nil
+    if client.name == "gopls" then
+      cwd = vim.env.GOPATH or "~/go/pkg/mod"
+    elseif client.name == "lua_ls" then
+      ---@diagnostic disable-next-line: param-type-mismatch
+      cwd = vim.fs.joinpath(vim.fn.stdpath('data'), "lazy")
+    end
+    require "custom.telescope.multigrep".setup({
+      prompt_title = "Library Grep",
+      cwd = cwd,
+      keybind = "<leader>ep"
+    })
+  end
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
-
 -- document existing key chains
 require('which-key').register {
   ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },

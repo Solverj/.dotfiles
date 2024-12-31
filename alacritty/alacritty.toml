@@ -1,4 +1,4 @@
-import = ["~/.dotfiles/alacritty/catppuccin-mocha.toml"]
+general.import = ["~/.dotfiles/alacritty/catppuccin-mocha.toml"]
 [window]
 padding = { x = 5, y = 5}
 opacity = 0.97
