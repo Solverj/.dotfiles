@@ -1,5 +1,6 @@
 -- [[ Basic Keymaps ]]
-vim.keymap.set("n", "<C-n>", "<cmd> Neotree float toggle <CR>", { desc = "Toggle nvim tree in float mode" })
+--vim.keymap.set("n", "<C-n>", "<cmd> Neotree float toggle <CR>", { desc = "Toggle nvim tree in float mode" })
+vim.keymap.set("n", "<C-n>", "<cmd> Oil<CR>")
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
