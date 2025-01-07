@@ -48,7 +48,7 @@ return {
       ["g\\"] = { "actions.toggle_trash", mode = "n" },
     },
     -- Set to false to disable all of the above keymaps
-    use_default_keymaps = false,
+    use_default_keymaps = true,
 
   },
   -- Optional dependencies
