@@ -51,7 +51,7 @@ return {
       { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
     vim.fn.sign_define('DapLogPoint',
       { text = '', texthl = 'DapLogPoint', linehl = 'DapLogPoint', numhl = 'DapLogPoint' })
-    vim.fn.sign_define('DapStopped', { text = '🎯', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
+    vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<leader>dS', dap.continue, { desc = 'Debug: Start/Continue' })
     vim.keymap.set('n', '<leader>d1', dap.step_into, { desc = 'Debug: Step Into' })

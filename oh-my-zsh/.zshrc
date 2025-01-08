@@ -48,22 +48,27 @@ export FZF_BASE=/usr/bin
 #make nvim default man pager
 export MANPAGER='nvim +Man!'
 export GOPRIVATE='github.com/Mattilsynet*'
-export GOROOT='/usr/lib/go'
 export GOPATH='/home/solve/go'
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 export EDITOR='nvim'
 export GONOPROXY='github.com/Mattilsynet*'
 export GONOSUMDB='github.com/Mattilsynet*'
+export GOBIN='/home/solve/go/bin'
 export PATH=$PATH:~/opt/nvim-linux64/bin
 export PATH=$PATH:/opt/google-cloud-cli/bin
 export PATH=$HOME/.g/bin:$PATH
 export PATH=$PATH:~/opt/Discord
 export FPATH=$FPATH:/home/solve/.dotfiles/oh-my-zsh/_gh
+<<<<<<< Updated upstream
 export PATH=$PATH:~/opt/wit-bindgen-wrpc
 export PATH=$PATH:~/opt/tinygo/bin
+=======
+export PATH=$PATH:~/opt
+export TINYGOROOT=~/opt/tinygo
+>>>>>>> Stashed changes
 
 #Aliases
-alias cat="bat --theme \"Catppuccin Macchiato\""
+#alias cat="bat --theme \"Catppuccin Macchiato\""
 alias vim="nvim"
 alias v="vim"
 alias gal='gcloud auth login'
@@ -73,6 +78,8 @@ alias l="eza --icons=auto --long --octal-permissions --all"
 alias tree="eza --icons=auto --tree"
 alias gmtv="go mod tidy && go mod vendor"
 alias resolve="LD_PRELOAD=\"/usr/lib/libgio-2.0.so /usr/lib/libgmodule-2.0.so\" /opt/resolve/bin/resolve"
+alias wadm="/home/solve/opt/wadm-v0.15.0-linux-amd64/wadm"
+
 
 #Set history configuration
 HISTFILE=~/.zhistory
@@ -104,5 +111,9 @@ eval "$(zoxide init --cmd cd zsh)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(direnv hook zsh)"
 
+<<<<<<< Updated upstream
 [ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env"  # g shell setup
 
+=======
+export GOPATH="$HOME/go"; export GOROOT="/usr/lib/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+>>>>>>> Stashed changes

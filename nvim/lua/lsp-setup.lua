@@ -1,16 +1,23 @@
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
+<<<<<<< Updated upstream
   if client.server_capabilities.inlayHintProvider then
     vim.g.inlay_hints_visible = true
     vim.lsp.inlay_hint.enable(true, nil)
   end
 
+=======
+>>>>>>> Stashed changes
   --  require('lsp_signature').on_attach(nil, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
   --
+  if client.server_capabilities.inlayHintProvider then
+    vim.g.inlay_hints_visible = true
+    vim.lsp.inlay_hint.enable(true, nil)
+  end
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
@@ -71,21 +78,29 @@ local on_attach = function(client, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+require('which-key').add {
+  { "<leader>c",  group = "[C]ode" },
+  { "<leader>c_", hidden = true },
+  { "<leader>d",  group = "[D]ocument" },
+  { "<leader>d_", hidden = true },
+  { "<leader>g",  group = "[G]it" },
+  { "<leader>g_", hidden = true },
+  { "<leader>h",  group = "Git [H]unk" },
+  { "<leader>h_", hidden = true },
+  { "<leader>r",  group = "[R]ename" },
+  { "<leader>r_", hidden = true },
+  { "<leader>s",  group = "[S]earch" },
+  { "<leader>s_", hidden = true },
+  { "<leader>t",  group = "[T]oggle" },
+  { "<leader>t_", hidden = true },
+  { "<leader>w",  group = "[W]orkspace" },
+  { "<leader>w_", hidden = true },
 }
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
-require('which-key').register({
-  ['<leader>'] = { name = 'VISUAL <leader>' },
-  ['<leader>h'] = { 'Git [H]unk' },
+require('which-key').add({
+  { "<leader>",  group = "VISUAL <leader>", mode = "v" },
+  { "<leader>h", desc = "Git [H]unk",       mode = "v" },
 }, { mode = 'v' })
 
 -- mason-lspconfig requires that these setup functions are called in this order
@@ -102,57 +117,83 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  terraformls = {
-  },
-  tflint = {},
-  gopls = {
-    gopls = {
-      codelenses = {
-        gc_details = false,
-        generate = true,
-        regenerate_cgo = true,
-        run_govulncheck = true,
-        test = true,
-        tidy = true,
-        upgrade_dependency = true,
-        vendor = true,
+      terraformls = {
       },
-      hints = {
-        assignVariableTypes = true,
-        compositeLiteralFields = true,
-        compositeLiteralTypes = true,
-        constantValues = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
+      tflint = {},
+      gopls = {
+        gopls = {
+          codelenses = {
+            gc_details = false,
+            generate = true,
+            regenerate_cgo = true,
+            run_govulncheck = true,
+            test = true,
+            tidy = true,
+            upgrade_dependency = true,
+            vendor = true,
+          },
+          hints = {
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            compositeLiteralTypes = true,
+            constantValues = true,
+            functionTypeParameters = true,
+            parameterNames = true,
+            rangeVariableTypes = true,
+          },
+          analyses = {
+            unusedparams = true,
+            shadow = true,
+          },
+          staticcheck = true,
+          completeUnimported = true,
+          gofumpt = true,
+          semanticTokens = true,
+        },
       },
-      analyses = {
-        unusedparams = true,
-        shadow = true,
+      lua_ls = {
+        Lua = {
+          workspace = { checkThirdParty = false },
+          telemetry = { enable = false },
+          hint = { enable = true },
+          -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+          diagnostics = { disable = { 'missing-fields' } },
+        },
       },
-      staticcheck = true,
-      completeUnimported = true,
-      gofumpt = true,
-      semanticTokens = true,
     },
-  },
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-      hint = { enable = true },
-      -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      diagnostics = { disable = { 'missing-fields' } },
-    },
+
+
+    -- Setup neovim lua configuration
+    require('neodev').setup()
+local lspconfig = require("lspconfig")
+local configs = require("lspconfig.configs")
+local cmp_lsp = require("cmp_nvim_lsp")
+local cuepls_capabilities = vim.lsp.protocol.make_client_capabilities()
+
+
+configs.cuepls = {
+  default_config = {
+    cmd = { "cue", "lsp" },
+    filetypes = { "cue" },
+    root_dir = require("lspconfig").util.root_pattern("cue.mod", ".git"),
+    capabilities = cuepls_capabilities,
+    settings = {},
   },
 }
+lspconfig.cuepls.setup({})
 
--- Setup neovim lua configuration
-require('neodev').setup()
+local capabilities = vim.tbl_deep_extend(
+  "force",
+  {},
+  vim.lsp.protocol.make_client_capabilities(),
+  cmp_lsp.default_capabilities()
+)
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -169,5 +210,19 @@ mason_lspconfig.setup_handlers {
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
+}
+-- cargo install protols
+
+configs.protols = {
+  default_config = {
+    cmd = { "/home/solve/.cargo/bin/protols" },
+    filetypes = { "proto" },
+    root_dir = lspconfig.util.root_pattern(".git"),
+    settings = {},
+  }
+}
+lspconfig.protols.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 -- vim: ts=2 sts=2 sw=2 et

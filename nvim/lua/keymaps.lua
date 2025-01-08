@@ -19,6 +19,11 @@ vim.keymap.set('n', 'OO', "<cmd>-put<CR>", { desc = 'make newline above but stay
 vim.keymap.set('n', 'o', "o", { desc = 'make newline undernearth and goto insert mode' })
 vim.keymap.set('n', 'O', "O", { desc = 'make newline above and goto insert mode' })
 vim.keymap.set('n', '<leader>ih', '<cmd> ToggleInlayHints<CR>', { desc = 'Toggle inlay hints' })
+vim.api.nvim_set_keymap('i', '"', '""<left>', { noremap = true })
+vim.api.nvim_set_keymap('i', "'", "''<left>", { noremap = true })
+vim.api.nvim_set_keymap('i', '(', '()<left>', { noremap = true })
+vim.api.nvim_set_keymap('i', '[', '[]<left>', { noremap = true })
+vim.api.nvim_set_keymap('i', '{', '{}<left>', { noremap = true })
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -29,5 +34,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
 -- vim: ts=2 sts=2 sw=2 et

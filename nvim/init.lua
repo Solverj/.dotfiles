@@ -67,7 +67,11 @@ require 'lsp-setup'
 -- [[ Configure nvim-cmp ]]
 -- (completion)
 require 'cmp-setup'
+<<<<<<< Updated upstream
 require('custom.init')
+=======
+require 'custom.init'
+>>>>>>> Stashed changes
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
@@ -129,6 +133,34 @@ function ToggleInlayHints()
     end
   end
 end
+
+function Truncate_lsp_log()
+  local lsp_log_path = vim.lsp.get_log_path()
+  local max_size = 1024 * 1024 -- 1 MB limit
+  local file = io.open(lsp_log_path, "r+")
+  if file then
+    local size = file:seek("end")
+    if size > max_size then
+      -- Truncate to the last few KB (e.g., 10 KB)
+      file:seek("end", -10240)
+      local content = file:read("*a")
+      file:close()
+
+      -- Rewrite with truncated content
+      file = io.open(lsp_log_path, "w")
+      file:write(content)
+      file:close()
+      print("LSP log truncated to 10 KB")
+    end
+  end
+end
+
+vim.cmd [[
+  augroup LspLogTruncate
+    autocmd!
+    autocmd VimEnter * lua Truncate_lsp_log()
+  augroup END
+]]
 
 function _G.reload_nvim_config()
   for name, _ in pairs(package.loaded) do
