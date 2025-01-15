@@ -49,23 +49,18 @@ export FZF_BASE=/usr/bin
 export MANPAGER='nvim +Man!'
 export GOPRIVATE='github.com/Mattilsynet*'
 export GOPATH='/home/solve/go'
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+export GOROOT='${HOME}/.g/go'
 export EDITOR='nvim'
 export GONOPROXY='github.com/Mattilsynet*'
 export GONOSUMDB='github.com/Mattilsynet*'
-export GOBIN='/home/solve/go/bin'
 export PATH=$PATH:~/opt/nvim-linux64/bin
 export PATH=$PATH:/opt/google-cloud-cli/bin
 export PATH=$HOME/.g/bin:$PATH
 export PATH=$PATH:~/opt/Discord
 export FPATH=$FPATH:/home/solve/.dotfiles/oh-my-zsh/_gh
-<<<<<<< Updated upstream
 export PATH=$PATH:~/opt/wit-bindgen-wrpc
-export PATH=$PATH:~/opt/tinygo/bin
-=======
 export PATH=$PATH:~/opt
 export TINYGOROOT=~/opt/tinygo
->>>>>>> Stashed changes
 
 #Aliases
 #alias cat="bat --theme \"Catppuccin Macchiato\""
@@ -111,9 +106,4 @@ eval "$(zoxide init --cmd cd zsh)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(direnv hook zsh)"
 
-<<<<<<< Updated upstream
 [ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env"  # g shell setup
-
-=======
-export GOPATH="$HOME/go"; export GOROOT="/usr/lib/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
->>>>>>> Stashed changes
