@@ -5,16 +5,15 @@ local on_attach = function(client, bufnr)
     vim.g.inlay_hints_visible = true
     vim.lsp.inlay_hint.enable(true, nil)
   end
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   --  require('lsp_signature').on_attach(nil, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
   --
-  if client.server_capabilities.inlayHintProvider then
-    vim.g.inlay_hints_visible = true
-    vim.lsp.inlay_hint.enable(true, nil)
-  end
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
@@ -166,7 +165,6 @@ local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 local cmp_lsp = require("cmp_nvim_lsp")
 local cuepls_capabilities = vim.lsp.protocol.make_client_capabilities()
-
 
 configs.cuepls = {
   default_config = {

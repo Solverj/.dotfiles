@@ -34,4 +34,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+function _G.get_schema()
+  local schema = require("yaml-companion").get_buf_schema(0)
+  if schema.result[1].name == "none" then
+    return ""
+  end
+  return schema.result[1].name
+end
+
+vim.api.nvim_set_keymap('n', '<leader>ycb', '<cmd>lua print(get_schema())<CR>', { noremap = true, silent = true })
 -- vim: ts=2 sts=2 sw=2 et

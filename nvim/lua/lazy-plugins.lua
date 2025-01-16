@@ -6,11 +6,16 @@
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
-
+  --
+  -- yaml schema support
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-
+  {
+    "b0o/SchemaStore.nvim",
+    lazy = true,
+    version = false, -- last release is way too old
+  },
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
