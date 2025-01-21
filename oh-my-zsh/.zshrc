@@ -110,3 +110,6 @@ eval "$(direnv hook zsh)"
 [ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env"  # g shell setup
 
 export GOPATH="$HOME/go"; export GOROOT="/usr/lib/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+
+[ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env"  # g shell setup
+

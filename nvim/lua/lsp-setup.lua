@@ -5,10 +5,6 @@ local on_attach = function(client, bufnr)
     vim.g.inlay_hints_visible = true
     vim.lsp.inlay_hint.enable(true, nil)
   end
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
   --  require('lsp_signature').on_attach(nil, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
