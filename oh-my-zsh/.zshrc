@@ -49,7 +49,7 @@ export FZF_BASE=/usr/bin
 export MANPAGER='nvim +Man!'
 export GOPRIVATE='github.com/Mattilsynet*'
 export GOPATH='/home/solve/go'
-export GOROOT='${HOME}/.g/go'
+export GOROOT='/usr/lib/go'
 export EDITOR='nvim'
 export GONOPROXY='github.com/Mattilsynet*'
 export GONOSUMDB='github.com/Mattilsynet*'
@@ -59,10 +59,7 @@ export PATH=$HOME/.g/bin:$PATH
 export PATH=$PATH:~/opt/Discord
 export FPATH=$FPATH:/home/solve/.dotfiles/oh-my-zsh/_gh
 export PATH=$PATH:~/opt/wit-bindgen-wrpc
-<<<<<<< Updated upstream
-=======
 export PATH=$PATH:~/opt/tinygo/bin
->>>>>>> Stashed changes
 export PATH=$PATH:~/opt
 export TINYGOROOT=~/opt/tinygo
 
@@ -111,8 +108,4 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(direnv hook zsh)"
 
 [ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env"  # g shell setup
-<<<<<<< Updated upstream
-=======
 
-export GOPATH="$HOME/go"; export GOROOT="/usr/lib/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
->>>>>>> Stashed changes

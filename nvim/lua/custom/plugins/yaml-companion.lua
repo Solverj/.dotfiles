@@ -1,7 +1,7 @@
 return {
   { "b0o/SchemaStore.nvim" },
   {
-    "msvechla/yaml-companion.nvim",
+    "someone-stole-my-name/yaml-companion.nvim",
     dependencies = {
       { "neovim/nvim-lspconfig" },
       { "nvim-lua/plenary.nvim" },
@@ -11,8 +11,8 @@ return {
     opts = {
       builtin_matchers = {
         -- Detects Kubernetes files based on content
-        kubernetes = { enabled = true },
-        cloud_init = { enabled = true }
+        kubernetes = { enabled = false },
+        cloud_init = { enabled = false }
       },
 
       -- Additional schemas available in Telescope picker
