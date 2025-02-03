@@ -107,5 +107,7 @@ eval "$(zoxide init --cmd cd zsh)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(direnv hook zsh)"
 
+export GOPATH="$HOME/go"; export GOROOT="/usr/lib/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+
 [ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env"  # g shell setup
 
