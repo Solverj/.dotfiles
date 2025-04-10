@@ -61,7 +61,9 @@ export FPATH=$FPATH:/home/solve/.dotfiles/oh-my-zsh/_gh
 export PATH=$PATH:~/opt/wit-bindgen-wrpc
 export PATH=$PATH:~/opt/tinygo/bin
 export PATH=$PATH:~/opt
-export TINYGOROOT=~/opt/tinygo
+#export TINYGOROOT=~/opt/tinygo
+export TINYGOROOT=/usr/lib/tinygo
+
 
 #Aliases
 #alias cat="bat --theme \"Catppuccin Macchiato\""
