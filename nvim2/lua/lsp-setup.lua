@@ -2,10 +2,10 @@
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
-    vim.g.inlay_hints_visible = true
-    vim.lsp.inlay_hint.enable(true, nil)
   end
   --  require('lsp_signature').on_attach(nil, bufnr)
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  vim.g.inlay_hints_visible = true
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -192,16 +192,21 @@ local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
-}
+-- mason_lspconfig.setup_handlers {
+--   function(server_name)
+--     require('lspconfig')[server_name].setup {
+--       capabilities = capabilities,
+--       on_attach = on_attach,
+--       settings = servers[server_name],
+--       filetypes = (servers[server_name] or {}).filetypes,
+--     }
+--   end,
+-- }
+for server, config in pairs(servers) do
+  config.capabilities = capabilities
+  config.on_attach = on_attach
+  lspconfig[server].setup(config)
+end
 -- cargo install protols
 
 configs.protols = {
