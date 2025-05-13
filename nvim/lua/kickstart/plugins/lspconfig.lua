@@ -264,7 +264,7 @@ return {
           -- capabilities = {},
           settings = {
             Lua = {
-              hint = { enabled = true },
+              hint = { enable = true },
               completion = {
                 callSnippet = 'Replace',
               },
