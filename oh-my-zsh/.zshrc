@@ -61,8 +61,10 @@ export FPATH=$FPATH:/home/solve/.dotfiles/oh-my-zsh/_gh
 export PATH=$PATH:~/opt/wit-bindgen-wrpc
 export PATH=$PATH:~/opt/tinygo/bin
 export PATH=$PATH:~/opt
-#export TINYGOROOT=~/opt/tinygo
-export TINYGOROOT=/usr/lib/tinygo
+export TINYGOROOT=~/opt/tinygo
+#export TINYGOROOT=/usr/lib/tinygo
+#to use gcloud beta logging tail at least this is needed, also more around how python installs packages through the internal python binary within gcloud
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 
 #Aliases
