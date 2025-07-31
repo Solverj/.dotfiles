@@ -63,6 +63,8 @@ export PATH=$PATH:~/opt/tinygo/bin
 export PATH=$PATH:~/opt
 #export TINYGOROOT=~/opt/tinygo
 export TINYGOROOT=/usr/lib/tinygo
+export CLOUDSDK_PYTHON=python3
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 
 #Aliases
