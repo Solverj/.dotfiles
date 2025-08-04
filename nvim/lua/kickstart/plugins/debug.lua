@@ -27,32 +27,44 @@ return {
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
     {
-      '<F5>',
+      '<leader>dS',
       function()
         require('dap').continue()
       end,
       desc = 'Debug: Start/Continue',
     },
     {
-      '<F1>',
+      '<leader>!dS',
+      function()
+        require('dap').run_last()
+      end,
+      desc = 'Debug: Run last',
+    },
+    {
+      '<leader>d1',
       function()
         require('dap').step_into()
       end,
       desc = 'Debug: Step Into',
     },
     {
-      '<F2>',
+      '<leader>d2',
       function()
         require('dap').step_over()
       end,
       desc = 'Debug: Step Over',
     },
     {
-      '<F3>',
+      '<leader>d3',
       function()
         require('dap').step_out()
       end,
       desc = 'Debug: Step Out',
+    },
+    {
+      '<leader>dE',
+      '<cmd>DapTerminate<CR>',
+      desc = 'Debug: Exit',
     },
     {
       '<leader>b',
@@ -75,6 +87,21 @@ return {
         require('dapui').toggle()
       end,
       desc = 'Debug: See last session result.',
+    },
+    -- {
+    --   '<leader>!dT',
+    --   require('dap-go').debug_last_test,
+    --   desc = 'Debug: Run last',
+    -- },
+    -- {
+    --   '<leader>dT',
+    --   require('dap-go').debug_test,
+    --   desc = 'Debug: Run nearest test',
+    -- },
+    {
+      '<leader>tr',
+      '<cmd>DapToggleRepl<CR>',
+      desc = 'Debug: Toggle REPL',
     },
   },
   config = function()
@@ -105,6 +132,26 @@ return {
       --    Feel free to remove or use ones that you like more! :)
       --    Don't feel like these are good choices.
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+      layouts = {
+        {
+          elements = {
+            { id = 'scopes', size = 0.33 },
+            { id = 'breakpoints', size = 0.17 },
+            { id = 'stacks', size = 0.25 },
+            { id = 'watches', size = 0.25 },
+          },
+          size = 0.33,
+          position = 'right',
+        },
+        {
+          elements = {
+            { id = 'repl', size = 0.45 },
+            { id = 'console', size = 0.55 },
+          },
+          size = 0.27,
+          position = 'bottom',
+        },
+      },
       controls = {
         icons = {
           pause = '⏸',
@@ -121,18 +168,18 @@ return {
     }
 
     -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    local breakpoint_icons = vim.g.have_nerd_font
+        and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+      or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = 'Dap' .. type
+      local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
-    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+    -- dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
@@ -144,5 +191,7 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+    vim.keymap.set('n', '<leader>!dT', require('dap-go').debug_last_test, { desc = 'Debug: Run last test' })
+    vim.keymap.set('n', '<leader>dT', require('dap-go').debug_test, { desc = 'Debug: Run nearest test' })
   end,
 }
