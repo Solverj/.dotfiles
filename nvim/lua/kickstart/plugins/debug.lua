@@ -84,7 +84,12 @@ return {
     {
       '<F7>',
       function()
-        require('dapui').toggle()
+        local dap, dapui = require 'dap', require 'dapui'
+        if dap.session() then
+          dapui.toggle()
+        else
+          vim.notify('No active debug session', vim.log.levels.WARN)
+        end
       end,
       desc = 'Debug: See last session result.',
     },

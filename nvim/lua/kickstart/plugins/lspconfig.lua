@@ -208,6 +208,21 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local project_root = vim.fn.getcwd()
+
+      -- require('lspconfig').gopls.setup{
+      --     root_dir = project_root,
+      --     settings = {
+      --         gopls = {
+      --             buildFlags = {"-tags=bluepill"},
+      --             env = {
+      --                 GOPATH = "/usr/lib/tinygo:/home/solve/go",
+      --             },
+      --         },
+      --     },
+      -- }
+      local tinygo_root = vim.fn.trim(vim.fn.system 'dirname $(dirname $(which tinygo))')
+      local home_go = os.getenv 'HOME' .. '/solve/go'
       local servers = {
         -- clangd = {},
         gopls = {
@@ -274,6 +289,7 @@ return {
             },
           },
         },
+        tombi = {},
       }
 
       -- Ensure the servers and tools above are installed

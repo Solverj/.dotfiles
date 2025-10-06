@@ -20,7 +20,6 @@ return {
   end,
   keys = {
     { '<leader>no', '<cmd>Neorg index<cr>', desc = 'Open Neorg Index' },
-    { '<leader>nn', '<cmd>Neorg new note<cr>', desc = 'Create New Note' },
     { '<leader>nq', '<cmd>Neorg query<cr>', desc = 'Run Neorg Query' },
     { '<leader>nr', '<cmd>Neorg return<cr>', desc = 'Return to code' },
     { '<leader>nw', '<cmd>Neorg workspace notes<cr>', desc = 'Switch to Notes Workspace' },
