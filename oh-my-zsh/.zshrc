@@ -6,8 +6,8 @@ fi
 
 # initiate zinit by either downloading or pointing towards where it's located
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+[ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname "$ZINIT_HOME")"
+[ ! -d "$ZINIT_HOME/.git" ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 # TODO: 
 # Add bat -theme: https://github.com/catppuccin/bat
 # Add eza installment
@@ -42,25 +42,25 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
 #exports
-export PATH=$PATH:~/go/bin/
-export PATH=$PATH:~/.cargo/bin
+export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 export FZF_BASE=/usr/bin
 #make nvim default man pager
 export MANPAGER='nvim +Man!'
 export GOPRIVATE='github.com/Mattilsynet*'
-export GOPATH='/home/solve/go'
+export GOPATH="$HOME/go"
 export GOROOT='/usr/lib/go'
 export EDITOR='nvim'
 export GONOPROXY='github.com/Mattilsynet*'
 export GONOSUMDB='github.com/Mattilsynet*'
-export PATH=$PATH:~/opt/nvim-linux64/bin
-export PATH=$PATH:/opt/google-cloud-cli/bin
-export PATH=$HOME/.g/bin:$PATH
-export PATH=$PATH:~/opt/Discord
-export FPATH=$FPATH:/home/solve/.dotfiles/oh-my-zsh/_gh
-export PATH=$PATH:~/opt/wit-bindgen-wrpc
-export PATH=$PATH:~/opt/tinygo/bin
-export PATH=$PATH:~/opt
+export PATH="$PATH:$HOME/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/google-cloud-cli/bin"
+export PATH="$HOME/.g/bin:$PATH"
+export PATH="$PATH:$HOME/opt/Discord"
+export FPATH="$FPATH:$HOME/.dotfiles/oh-my-zsh/_gh"
+export PATH="$PATH:$HOME/opt/wit-bindgen-wrpc"
+export PATH="$PATH:$HOME/opt/tinygo/bin"
+export PATH="$PATH:$HOME/opt"
 export TINYGOROOT=$(dirname $(dirname $(which tinygo)))
 export CLOUDSDK_PYTHON=python3
 #export TINYGOROOT=~/opt/tinygo
@@ -81,7 +81,7 @@ alias l="eza --icons=auto --long --octal-permissions --all"
 alias tree="eza --icons=auto --tree"
 alias gmtv="go mod tidy && go mod vendor"
 alias resolve="LD_PRELOAD=\"/usr/lib/libgio-2.0.so /usr/lib/libgmodule-2.0.so\" /opt/resolve/bin/resolve"
-alias wadm="/home/solve/opt/wadm-v0.15.0-linux-amd64/wadm"
+alias wadm="$HOME/opt/wadm-v0.15.0-linux-amd64/wadm"
 
 
 #Set history configuration
@@ -117,4 +117,3 @@ eval "$(direnv hook zsh)"
 export GOPATH="$HOME/go"; export GOROOT="/usr/lib/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 [ -s "${HOME}/.g/env" ] && \. "${HOME}/.g/env"  # g shell setup
-
