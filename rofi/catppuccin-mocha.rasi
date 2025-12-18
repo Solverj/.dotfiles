@@ -1,0 +1,92 @@
+* {
+    al:     #181825ff;
+    bg:     #11111bff;
+    bg-alt: #1a1a27ff;
+    fg:     #cdd6f4ff;
+    fg-alt: #bac2deff;
+    accent: #89b4faff;
+    accent-alt: #a6e3a1ff;
+    urgent: #fab387ff;
+    border: 0px;
+    border-color: transparent;
+    border-radius: 6px;
+    padding: 6px;
+    font: "JetBrainsMono Nerd Font 10";
+}
+
+window {
+    location: center;
+    width: 28%;
+    padding: 10px;
+    background-color: @bg;
+    y-offset: 80px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing: 6px;
+}
+
+inputbar {
+    background-color: @bg-alt;
+    text-color: @fg;
+    padding: 6px 10px;
+    border-radius: @border-radius;
+    border: 0;
+}
+
+prompt {
+    background-color: inherit;
+    text-color: @accent;
+    margin: 0 6px 0 0;
+}
+
+entry {
+    background-color: inherit;
+    text-color: @fg;
+}
+
+listview {
+    background-color: transparent;
+    spacing: 4px;
+    fixed-height: 0;
+    lines: 8;
+}
+
+element {
+    background-color: transparent;
+    text-color: @fg;
+    border-radius: @border-radius;
+    padding: 6px 10px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color: @bg;
+}
+
+element urgent {
+    background-color: @urgent;
+    text-color: @bg;
+}
+
+element-text, element-icon {
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element-icon {
+    size: 1em;
+    margin: 0 8px 0 0;
+}
+
+message {
+    background-color: transparent;
+    padding: 0;
+    text-color: @fg-alt;
+}
+
+textbox {
+    background-color: inherit;
+    text-color: inherit;
+}

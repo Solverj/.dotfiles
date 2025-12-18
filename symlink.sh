@@ -162,3 +162,5 @@ ln_host_aware i3 ~/.config
 ln_host_aware alacritty ~/.config
 ln_host_aware tmux/.tmux.conf ~/
 ln_host_aware nitrogen ~/.config
+ln_host_aware redshift ~/.config
+ln_host_aware rofi ~/.config

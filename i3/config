@@ -37,7 +37,7 @@ set $mantle    #181825
 set $crust     #11111b
 
 set $terminal alacritty
-set $launcher dmenu_run -p 'Run' -fn 'monospace-12' -nb "$mantle" -nf "$text" -sb "$lavender" -sf "$mantle"
+set $launcher rofi -show drun -config ~/.config/rofi/config.rasi
 
 default_border pixel 3
 default_floating_border pixel 3
@@ -70,6 +70,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
+exec_always --no-startup-id redshift -c ~/.config/redshift/redshift.conf
 # Use pactl to adjust volume in PulseAudio.
 #set $refresh_i3status killall -SIGUSR1 i3status
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -93,7 +94,7 @@ bindsym $mod+Return exec $terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
+# start rofi (a program launcher)
 bindsym $mod+d exec --no-startup-id $launcher
 # custom keybinds for zen-mode
 bindsym $mod+z exec "~/.config/i3/lock.sh"

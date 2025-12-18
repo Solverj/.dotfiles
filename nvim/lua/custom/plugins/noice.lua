@@ -1,22 +1,56 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  opts = {},
-  config = function()
-    require("noice").setup({
-      lsp = {
-        signature = {
-          enabled = false,
-        }
+  opts = {
+    lsp = {
+      progress = {
+        enabled = true,
       },
-    })
+      override = {
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        ["vim.lsp.util.stylize_markdown"] = true,
+        ["cmp.entry.get_documentation"] = true,
+      },
+      signature = {
+        enabled = true,
+        auto_open = {
+          enabled = true,
+          trigger = true,
+        },
+      },
+    },
+    presets = {
+      bottom_search = true,
+      command_palette = true,
+      lsp_doc_border = true,
+    },
+    routes = {
+      {
+        filter = {
+          event = "msg_show",
+          kind = "",
+          find = "written",
+        },
+        opts = { skip = true },
+      },
+    },
+  },
+  config = function(_, opts)
+    require("noice").setup(opts)
   end,
   dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     "MunifTanjim/nui.nvim",
-    -- OPTIONAL:
-    --   `nvim-notify` is only needed, if you want to use the notification view.
-    --   If not available, we use `mini` as the fallback
-    --    "rcarriga/nvim-notify",
-  }
+    {
+      "rcarriga/nvim-notify",
+      opts = {
+        background_colour = "#1e1e2e",
+        timeout = 3000,
+      },
+      config = function(_, notify_opts)
+        local notify = require("notify")
+        notify.setup(notify_opts)
+        vim.notify = notify
+      end,
+    },
+  },
 }

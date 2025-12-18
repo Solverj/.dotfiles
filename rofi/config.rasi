@@ -1,0 +1,13 @@
+configuration {
+    modi: "drun,keys,run,window";
+    display-drun: "Apps";
+    display-keys: "Help";
+    drun-display-format: "{name}";
+    show-icons: true;
+    icon-theme: "Papirus";
+    terminal: "alacritty";
+    kb-mode-next: "F1,Shift+Right,Control+Tab";
+    kb-mode-previous: "Shift+F1,Shift+Left,Control+ISO_Left_Tab";
+}
+
+@theme "~/.config/rofi/catppuccin-mocha.rasi"
