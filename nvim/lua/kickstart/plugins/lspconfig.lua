@@ -42,8 +42,9 @@ return {
         map('grD', vim.lsp.buf.declaration, 'Declaration')
 
         -- Highlight references
-        local client = vim.lsp.get_client_by_id(vim.lsp.get_active_clients({ bufnr = bufnr })[1].id)
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        local clients = vim.lsp.get_clients({ bufnr = bufnr })
+        local client = clients and clients[1]
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
           local group = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             buffer = bufnr,
@@ -126,6 +127,8 @@ return {
               completeUnimported = true,
               matcher = 'CaseInsensitive',
               experimentalPostfixCompletions = true,
+              experimentalWorkspaceModule = true,
+              standalone_file_support = true,
               directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules', '-build', '-out' },
             },
           },
