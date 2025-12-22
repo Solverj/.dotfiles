@@ -8,13 +8,14 @@ fi
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname "$ZINIT_HOME")"
 [ ! -d "$ZINIT_HOME/.git" ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-# TODO: 
-# Add bat -theme: https://github.com/catppuccin/bat
-# Add eza installment
-# Add bat installment
-
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
+
+# CLI tools managed by zinit
+zinit ice from"gh-r" as"program" bpick"*x86_64-unknown-linux-gnu.tar.gz" pick"**/bat"
+zinit light sharkdp/bat
+zinit ice from"gh-r" as"program" bpick"*x86_64-unknown-linux-gnu.tar.gz" pick"**/eza"
+zinit light eza-community/eza
 
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -68,10 +69,11 @@ export TINYGOROOT=/usr/lib/tinygo
 #to use gcloud beta logging tail at least this is needed, also more around how python installs packages through the internal python binary within gcloud
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 export OPENAI_API_KEY=$(<~/.config/avante/api_key.txt)
+export BAT_THEME="Catppuccin Mocha"
+export BAT_CONFIG_PATH="$HOME/.config/bat/config"
 
 
 #Aliases
-#alias cat="bat --theme \"Catppuccin Macchiato\""
 alias vim="nvim"
 alias v="vim"
 alias gal='gcloud auth login'

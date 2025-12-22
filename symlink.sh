@@ -164,3 +164,4 @@ ln_host_aware tmux/.tmux.conf ~/
 ln_host_aware nitrogen ~/.config
 ln_host_aware redshift ~/.config
 ln_host_aware rofi ~/.config
+ln_host_aware bat ~/.config

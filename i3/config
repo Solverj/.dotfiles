@@ -70,7 +70,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-exec_always --no-startup-id redshift -c ~/.config/redshift/redshift.conf
+exec --no-startup-id redshift -c ~/.config/redshift/redshift.conf
 # Use pactl to adjust volume in PulseAudio.
 #set $refresh_i3status killall -SIGUSR1 i3status
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -98,13 +98,13 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id $launcher
 # custom keybinds for zen-mode
 bindsym $mod+z exec "~/.config/i3/lock.sh"
-bindsym $mod+g exec google-chrome-stable --profile-directory="Soelve" --new-window https://chat.openai.com/
-bindsym $mod+Shift+g exec google-chrome-stable --profile-directory="MtWork" --new-window https://github.com/orgs/Mattilsynet/projects/1
-bindsym $mod+b exec google-chrome-stable --profile-directory="Vikoder" --new-window https://fiken.no/ https://mail.google.com/mail/u/0/#inbox https://fiken.no/foretak/vikoder-as/timeforing/
+bindsym $mod+g exec google-chrome-stable --class=chatgpt --profile-directory="Soelve" --new-window https://chat.openai.com/
+bindsym $mod+Shift+g exec google-chrome-stable --class=mtwork-gh --profile-directory="MtWork" --new-window https://github.com/orgs/Mattilsynet/projects/1
+bindsym $mod+b exec google-chrome-stable --class=vikoder --profile-directory="Vikoder" --new-window https://fiken.no/ https://mail.google.com/mail/u/0/#inbox https://fiken.no/foretak/vikoder-as/timeforing/
 # applications
 bindsym $mod+Shift+s exec slack
 bindsym $mod+t exec teams
-bindsym $mod+o exec google-chrome-stable --profile-director="MtWork" --new-window https://outlook.office.com/mail
+bindsym $mod+o exec google-chrome-stable --class=mtoutlook --profile-directory="MtWork" --new-window https://outlook.office.com/mail
 # background setting
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 # A more modern dmenu replacement is rofi:
@@ -177,6 +177,14 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+# workspace assignments keep apps landing where they belong
+assign [class="(?i)slack"] $ws2
+assign [class="(?i)teams"] $ws2
+assign [class="mtoutlook"] $ws2
+assign [class="mtwork-gh"] $ws1
+assign [class="chatgpt"] $ws3
+assign [class="vikoder"] $ws4
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -252,7 +260,7 @@ bar {
     font pango:monospace 12
     i3bar_command i3bar --transparency
     strip_workspace_numbers yes
-    status_command i3status
+    status_command i3status -c ~/.config/i3/i3status.conf
     mode hide
 #    height 30
     colors {
