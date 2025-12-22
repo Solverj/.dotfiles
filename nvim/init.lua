@@ -84,6 +84,47 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+local function ensure_writable_dir(dir)
+  if vim.fn.isdirectory(dir) == 0 then
+    vim.fn.mkdir(dir, 'p', 448)
+  end
+  local probe = vim.fs.joinpath(dir, '.nvim-write-check')
+  local fd = vim.uv.fs_open(probe, 'w', 384)
+  if fd then
+    vim.uv.fs_close(fd)
+    os.remove(probe)
+    return true
+  end
+  return false
+end
+
+local function configure_stdpath(kind, fallback_subdir)
+  local path = vim.fn.stdpath(kind)
+  if ensure_writable_dir(path) then
+    return path
+  end
+  local fallback = vim.fs.joinpath(vim.fn.stdpath('config'), fallback_subdir)
+  if kind == 'state' then
+    vim.env.XDG_STATE_HOME = fallback
+  elseif kind == 'cache' then
+    vim.env.XDG_CACHE_HOME = fallback
+  end
+  path = vim.fn.stdpath(kind)
+  ensure_writable_dir(path)
+  return path
+end
+
+local state_dir = configure_stdpath('state', '.state')
+local cache_dir = configure_stdpath('cache', '.cache')
+ensure_writable_dir(vim.fs.joinpath(state_dir, 'shada'))
+vim.o.shadafile = vim.fs.joinpath(state_dir, 'shada', 'main.shada')
+if vim.loader and vim.loader.config then
+  vim.loader.config {
+    enabled = true,
+    paths = { cache_dir },
+  }
+end
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -92,6 +133,9 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
+
+-- [[ Compatibility helpers ]]
+require 'compat'
 
 -- [[ Setting options ]]
 require 'options'
