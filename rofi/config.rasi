@@ -11,5 +11,3 @@ configuration {
 }
 
 @theme "~/.config/rofi/catppuccin-mocha.rasi"
-}
-

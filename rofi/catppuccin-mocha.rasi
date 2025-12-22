@@ -9,28 +9,28 @@
     urgent: #fab387ff;
     border: 0px;
     border-color: transparent;
-    border-radius: 6px;
-    padding: 6px;
-    font: "JetBrainsMono Nerd Font 10";
+    border-radius: 16px;
+    padding: 14px;
+    font: "JetBrainsMono Nerd Font 28";
 }
 
 window {
     location: center;
-    width: 28%;
-    padding: 10px;
+    width: 80%;
+    padding: 30px;
     background-color: @bg;
-    y-offset: 80px;
+    y-offset: 10px;
 }
 
 mainbox {
     background-color: transparent;
-    spacing: 6px;
+    spacing: 18px;
 }
 
 inputbar {
     background-color: @bg-alt;
     text-color: @fg;
-    padding: 6px 10px;
+    padding: 18px 24px;
     border-radius: @border-radius;
     border: 0;
 }
@@ -48,7 +48,7 @@ entry {
 
 listview {
     background-color: transparent;
-    spacing: 4px;
+    spacing: 18px;
     fixed-height: 0;
     lines: 8;
 }
@@ -57,7 +57,7 @@ element {
     background-color: transparent;
     text-color: @fg;
     border-radius: @border-radius;
-    padding: 6px 10px;
+    padding: 18px 24px;
 }
 
 element selected {
@@ -89,30 +89,4 @@ message {
 textbox {
     background-color: inherit;
     text-color: inherit;
-  rosewater: #f5e0dc;
-  flamingo: #f2cdcd;
-  pink: #f5c2e7;
-  mauve: #cba6f7;
-  red: #f38ba8;
-  maroon: #eba0ac;
-  peach: #fab387;
-  yellow: #f9e2af;
-  green: #a6e3a1;
-  teal: #94e2d5;
-  sky: #89dceb;
-  sapphire: #74c7ec;
-  blue: #89b4fa;
-  lavender: #b4befe;
-  text: #cdd6f4;
-  subtext1: #bac2de;
-  subtext0: #a6adc8;
-  overlay2: #9399b2;
-  overlay1: #7f849c;
-  overlay0: #6c7086;
-  surface2: #585b70;
-  surface1: #45475a;
-  surface0: #313244;
-  base: #1e1e2e;
-  mantle: #181825;
-  crust: #11111b;
 }
