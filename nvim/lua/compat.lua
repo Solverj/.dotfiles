@@ -41,38 +41,4 @@ if type(vim.validate) == 'function' then
   end
 end
 
--- Alias renamed modules that some plugins still `require`.
-package.preload['nvim-treesitter.configs'] = package.preload['nvim-treesitter.configs']
-  or function()
-    return require('nvim-treesitter.config')
-  end
-
-package.preload['nvim-treesitter.ts_utils'] = package.preload['nvim-treesitter.ts_utils']
-  or function()
-    local ok, mod = pcall(require, 'vim.treesitter.ts_utils')
-    if ok then
-      return mod
-    end
-    local ts = require('nvim-treesitter')
-    local parser_cache = {}
-    local M = {}
-    function M.get_node_at_cursor(winnr)
-      winnr = winnr or vim.api.nvim_get_current_win()
-      local bufnr = vim.api.nvim_win_get_buf(winnr)
-      local ft = vim.bo[bufnr].filetype
-      parser_cache[bufnr] = parser_cache[bufnr]
-        or vim.treesitter.get_parser(bufnr, ft, { reuse_tree = true })
-      local tree = parser_cache[bufnr]:parse()[1]
-      if not tree then
-        return
-      end
-      local node = tree:root()
-      local row, col = unpack(vim.api.nvim_win_get_cursor(winnr))
-      row = row - 1
-      local found = node:named_descendant_for_range(row, col, row, col)
-      return found
-    end
-    return M
-  end
-
 return {}
