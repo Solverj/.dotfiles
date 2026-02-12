@@ -60,17 +60,20 @@ export PATH="$HOME/.g/bin:$PATH"
 export PATH="$PATH:$HOME/opt/Discord"
 export FPATH="$FPATH:$HOME/.dotfiles/oh-my-zsh/_gh"
 export PATH="$PATH:$HOME/opt/wit-bindgen-wrpc"
-export PATH="$PATH:$HOME/opt/tinygo/bin"
+if [[ -d "$HOME/opt/tinygo/bin" ]]; then
+  export PATH="$PATH:$HOME/opt/tinygo/bin"
+fi
 export PATH="$PATH:$HOME/opt"
-export TINYGOROOT=$(dirname $(dirname $(which tinygo)))
+export PATH="$HOME/go1.23/bin:$PATH"
+export GOROOT="$HOME/go1.23"
+export GOTOOLCHAIN=local
 export CLOUDSDK_PYTHON=python3
-#export TINYGOROOT=~/opt/tinygo
-export TINYGOROOT=/usr/lib/tinygo
 #to use gcloud beta logging tail at least this is needed, also more around how python installs packages through the internal python binary within gcloud
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 export OPENAI_API_KEY=$(<~/.config/avante/api_key.txt)
 export BAT_THEME="Catppuccin Mocha"
 export BAT_CONFIG_PATH="$HOME/.config/bat/config"
+export TINYGOROOT=/usr/lib/tinygo
 
 
 #Aliases
@@ -84,6 +87,7 @@ alias tree="eza --icons=auto --tree"
 alias gmtv="go mod tidy && go mod vendor"
 alias resolve="LD_PRELOAD=\"/usr/lib/libgio-2.0.so /usr/lib/libgmodule-2.0.so\" /opt/resolve/bin/resolve"
 alias wadm="$HOME/opt/wadm-v0.15.0-linux-amd64/wadm"
+alias oc="opencode"
 
 
 #Set history configuration
