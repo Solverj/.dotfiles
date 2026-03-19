@@ -166,3 +166,4 @@ ln_host_aware redshift ~/.config
 ln_host_aware rofi ~/.config
 ln_host_aware bat ~/.config
 ln_host_aware picom ~/.config
+ln_host_aware opencode ~/.config

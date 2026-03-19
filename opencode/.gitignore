@@ -1,0 +1,6 @@
+node_modules/
+package-lock.json
+bun.lock
+agents.backup/
+*.backup
+opencode.json.local

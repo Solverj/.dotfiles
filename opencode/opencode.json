@@ -1,0 +1,139 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 32000
+  },
+  "mcp": {
+    "excalidraw": {
+      "type": "local",
+      "command": [
+        "node",
+        "${EXCALIDRAW_MCP_PATH}",
+        "--stdio"
+      ],
+      "environment": {
+        "CHECKPOINT_API_URL": "${CHECKPOINT_API_URL}",
+        "ROOM_SERVER_URL": "${ROOM_SERVER_URL}",
+        "TEAM_ID": "${TEAM_ID}",
+        "DEVELOPER_NAME": "${DEVELOPER_NAME}",
+        "AI_MODEL": "claude-3.5"
+      },
+      "enabled": true
+    }
+  },
+  "provider": {
+    "plan-provider": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "${OPENCODE_API_URL}"
+      },
+      "models": {
+        "drama/code-thinking": {
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "options": {
+            "chat_template_kwargs": {
+              "enable_thinking": true
+            }
+          }
+        }
+      }
+    },
+    "build-provider": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "${OPENCODE_API_URL}"
+      },
+      "models": {
+        "drama/code-thinking": {
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "options": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "permission": {
+    "read": {
+      "**/.envrc": "deny",
+      "**/.env": "deny",
+      "**/.env.*": "deny",
+      "**/*.env": "deny",
+      "**/*.pem": "deny",
+      "**/*.key": "deny",
+      "**/*.p12": "deny",
+      "**/*.pfx": "deny",
+      "**/*.crt": "deny",
+      "**/.ssh/**": "deny",
+      "**/secrets/**": "deny",
+      "**/.git-credentials": "deny",
+      "**/.npmrc": "deny",
+      "**/.docker/config.json": "deny",
+      "**/*credentials*": "deny",
+      "**/*password*": "deny",
+      "**/*secret*": "deny"
+    }
+  },
+  "model": "build-provider/drama/code-thinking",
+  "agent": {
+    "plan": {
+      "mode": "primary",
+      "model": "plan-provider/drama/code-thinking",
+      "prompt": "{file:./prompts/plan.txt}",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny"
+      },
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "top_k": 20
+    },
+    "build": {
+      "mode": "primary",
+      "model": "build-provider/drama/code-thinking",
+      "prompt": "{file:./prompts/build.txt}",
+      "temperature": 0.1,
+      "top_p": 0.9,
+      "top_k": 20
+    },
+    "researcher": {
+      "mode": "subagent",
+      "hidden": true,
+      "model": "plan-provider/drama/code-thinking",
+      "prompt": "{file:./prompts/researcher.txt}",
+      "permission": {
+        "webfetch": "allow",
+        "searxng_web_search": "allow"
+      },
+      "temperature": 0.3,
+      "top_p": 0.9,
+      "top_k": 40
+    },
+    "rigormortis": {
+      "mode": "subagent",
+      "hidden": true,
+      "model": "plan-provider/drama/code-thinking",
+      "prompt": "{file:./prompts/rigormortis.txt}",
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow"
+      },
+      "temperature": 0.1,
+      "top_p": 0.9,
+      "top_k": 20
+    }
+  },
+  "plugin": ["./plugins/index.mjs"]
+}
