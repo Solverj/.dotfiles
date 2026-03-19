@@ -40,13 +40,18 @@ export DEVELOPER_NAME="your-name"
 
 ### Host-Specific Overrides
 
-Machine-specific configurations (like actual API URLs and paths) should be placed in:
+Machine-specific configurations (like actual API URLs, paths, and credentials) should be placed in:
 
 ```
-hosts-local/<hostname>/opencode/opencode.json
+hosts-local/<hostname>/opencode/
 ```
 
-The `symlink.sh` script automatically uses these overrides when deploying.
+The `symlink.sh` script automatically uses these overrides when deploying. The entire `hosts-local/<hostname>/opencode/` directory will be symlinked, so you can either:
+
+1. **Full override**: Copy all files to `hosts-local/<hostname>/opencode/` and only modify `opencode.json`
+2. **Partial override**: Only place `opencode.json` in `hosts-local/<hostname>/opencode/` and let other files fall back to the base `opencode/` directory
+
+> **Note**: The `hosts-local/` directory is git-ignored to protect sensitive data. Your actual configuration with API URLs and paths lives here.
 
 ## Installation
 
